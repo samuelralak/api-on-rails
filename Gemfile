@@ -25,7 +25,7 @@ group :test do
   gem 'ffaker'
 end
 
-
+gem 'devise'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
