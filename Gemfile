@@ -10,12 +10,19 @@ gem 'spring', :group => :development
 
 gem 'pg'
 
-#Api gems
+# Api gems
 gem 'active_model_serializers'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+# Testing stack
+group :test do
+  gem "rspec-rails"
+  gem "factory_girl_rails"
+  gem 'ffaker'
 end
 
 
