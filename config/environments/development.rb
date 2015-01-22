@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -26,6 +26,22 @@ Rails.application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => 'app33417723@heroku.com',
+    :password       => '9dbritiz',
+    :domain         => 'market-place-api.dev:3000'
+  }
+
+  ActionMailer::Base.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'market-place-api.dev:3000' }
+  config.action_mailer.asset_host = "http://market-place-api.dev:3000"
+
+  Rails.logger = Logger.new(STDOUT)
+  Rails.logger.level = 0
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
