@@ -16,4 +16,27 @@ RSpec.describe Api::V1::UsersController, :type => :controller do
 
 		it { should respond_with 200 }
 	end
+
+	describe "POST #create" do
+		context "success" do
+			before(:each) do
+				@user_attributes = FactoryGirl.attributes_for :user
+				post :create, { user: @user_attributes}, format: :json
+			end
+
+			it "renders the json represention for user record just created" do
+				user_response = JSON.parse(response.body, symbolize_names: true)
+				expect(user_response[:email]).to eql @user_attributes[:email]
+			end
+
+			it { should respond_with 201 }
+		end
+
+		context "failure" do
+			before(:each) do
+				@user_attributes = FactoryGirl.attributes_for :user
+				post :create, { user: @user_attributes}, format: :json
+			end
+		end
+	end
 end
